@@ -12,7 +12,7 @@ class ModelTests(TestCase):
         """Test creating a user with an email is successful."""
         email = 'test@example.com'  # 'example.com' is a reserved domain used in documentation and testing.
         password = 'testpass123'  # Define a test password. Since this is for testing, the actual content doesn't matter.
-        user = get_user_model().objects.create_user(  # Create a new user using Django's custom user model. 
+        user = get_user_model().objects.create_user(  # Create a new user using Django's custom user model.
             email=email,                              # `get_user_model()` returns the currently active User model, which is useful in case you have a custom user model.
             password=password,                        # `objects.create_user()` creates and saves a new user with the given email and password.
         )
@@ -36,7 +36,7 @@ class ModelTests(TestCase):
             ['test1@EXAMPLE.com', 'test1@example.com'],
             ['Test2@Example.com', 'Test2@example.com'],
             ['TEST3@EXAMPLE.com', 'TEST3@example.com'],
-            ['test4@example.COM', 'test4@example.com'],        
+            ['test4@example.COM', 'test4@example.com'],
         ]
 
         for email, expected in sample_emails:  # Loop through each email pair in the list.
@@ -60,12 +60,12 @@ class ModelTests(TestCase):
             'test@example.com',
             'test123',
         )
-        
+
         # Check if the user has superuser privileges.
         # `is_superuser` is a Boolean field provided by Django’s `PermissionsMixin`.
         # It allows the user to bypass all permission checks.
-        self.assertTrue(user.is_superuser)  
+        self.assertTrue(user.is_superuser)
 
         # Check if the user has staff status.
         # `is_staff=True` is required to access the Django admin interface.
-        self.assertTrue(user.is_staff)  
+        self.assertTrue(user.is_staff)

@@ -22,18 +22,18 @@ class UserManager(BaseUserManager):  # Define UserManager based on the BaseUserM
         user.set_password(password)
         user.save(using=self._db)  # best practice to save to self._db (in case for multiple databases -> rare tho)
 
-        return user  # return the newly created user 
+        return user  # return the newly created user
 
     def create_superuser(self, email, password):
         """Create and return a new superuser."""
         user = self.create_user(email, password)  # First, create a regular user using the existing create_user method.
         user.is_staff = True  # Grant superuser privileges: this allows bypassing all permission checks.
         user.is_superuser = True  # Grant staff status: this allows access to the Django admin interface. Required to log into the Django admin panel.
-        
+
         # Save the updated user object to the database.
         # Using `self._db` is best practice for database routing compatibility.
         user.save(using=self._db)
-        
+
         return user
 
 
